@@ -58,5 +58,10 @@ childs = tree.filter((item)=>c.left < item.left && c.right > item.right);
 console.log("select childs from reindex tree", childs);
 
 
+//get all parent
+
+c = tree.find((c)=>c.name === "Бабочки");
+childs = tree.filter((item)=>c.left > item.left && c.right < item.right);
+console.log("select parent from reindex tree", childs);
 
 
