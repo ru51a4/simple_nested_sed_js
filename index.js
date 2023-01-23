@@ -50,10 +50,10 @@ let create_nested_set = (node) => {
 }
 create_nested_set(c);
 
-c = tree.find((c)=>c.name === "Женская");
 console.log("reindex tree", tree)
 
 //get childs
+c = tree.find((c)=>c.name === "Женская");
 childs = tree.filter((item)=>c.left < item.left && c.right > item.right);
 console.log("select childs from reindex tree", childs);
 
