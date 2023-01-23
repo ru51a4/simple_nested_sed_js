@@ -45,17 +45,17 @@ deep(c)
 tree = [];
 let counter = 1;
 let lvl_counter = 0;
-let create_nested_sed = (node) => {
+let create_nested_set = (node) => {
     node.left = counter++;
     node.lvl = lvl_counter++;
     node?.childrens?.forEach((item)=>{
-        create_nested_sed(item);
+        create_nested_set(item);
     })
     lvl_counter--;
     node.right = counter++
     tree.push(node);
 }
-create_nested_sed(c);
+create_nested_set(c);
 
 c = tree.find((c)=>c.name === "Женская");
 
