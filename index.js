@@ -21,27 +21,19 @@ console.log("simple get childs", childs);
 //add node
 let node = {"name": "Бабочки"};
 c = tree[0];
-deep = (c) => {
+let deep = (c) => {
 	let childs = tree.filter((item)=>c.left < item.left && c.right > item.right && item.lvl === c.lvl + 1);
 	c.childrens = [];
 	childs.forEach((ch)=>{
 		c.childrens.push(ch);
 		deep(ch);
 	});
-}
-deep(c)
-
-deep = (c) => {
-	if (c.name == "Сарафаны"){
+	if(c.name === "Женская"){
 		c.childrens.push(node);
-		return;
 	}
-	c.childrens.forEach((item)=>{
-		deep(item);
-	});
 }
 deep(c)
-
+//reindex
 tree = [];
 let counter = 1;
 let lvl_counter = 0;
@@ -58,9 +50,9 @@ let create_nested_set = (node) => {
 create_nested_set(c);
 
 c = tree.find((c)=>c.name === "Женская");
+console.log("reindex tree", tree)
 
 //get childs
-console.log("reindex tree", tree)
 childs = tree.filter((item)=>c.left < item.left && c.right > item.right);
 console.log("select childs from reindex tree", childs);
 
