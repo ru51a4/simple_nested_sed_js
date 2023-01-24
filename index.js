@@ -64,4 +64,40 @@ c = tree.find((c)=>c.name === "Бабочки");
 childs = tree.filter((item)=>c.left > item.left && c.right < item.right);
 console.log("select parent from reindex tree", childs);
 
-
+//create tree without depth
+tree = [
+    {name: "Одежда", left: 1, right: 22, lvl: 0},
+    {name: "Мужская", left: 2, right: 9, lvl: 1},
+    {name: "Женская", left: 10, right: 21, lvl: 1},
+    {name: "Костюмы", left: 3, right: 8, lvl: 2},
+    {name: "Брюки", left: 4, right: 5, lvl: 3},
+    {name: "Куртки", left: 6, right: 7, lvl: 3},
+    {name: "Платья", left: 11, right: 16, lvl:2},
+    {name: "Юбки", left: 17, right: 18, lvl: 2},
+    {name: "Блузки", left: 19, right: 20, lvl: 2},
+    {name: "Вечерние платья", left: 12, right: 13, lvl: 3},
+    {name: "Сарафаны", left: 14, right: 15, lvl: 3},
+];
+//
+let count = 1;
+let c_right = [];
+let c_left = tree.find((item)=>item.left === count);
+let stack = [c_left];
+while(c_left || c_right){
+    count++;
+    c_left = tree.find((item)=>item.left === count);
+    if(c_left){
+        if(!stack[stack.length-1]?.childrens){
+            stack[stack.length-1].childrens = [];
+        }
+        stack[stack.length-1].childrens.push(c_left);
+        stack.push(c_left);
+    }
+    c_right = tree.find((item)=>item.right === count);
+    if(c_right){
+        if(stack.length !== 1){
+            stack.pop();
+        }
+    }
+}
+console.log("without depth", stack[0])
